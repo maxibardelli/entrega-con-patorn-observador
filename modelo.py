@@ -47,6 +47,7 @@ def mensaje_pantalla_modificar(funcion_modificar):
             print("modificacion cancelada")
     return envoltura
 """
+
 class Control(Sujeto):
     def __init__(self) -> None:
         pass
@@ -54,11 +55,10 @@ class Control(Sujeto):
     #@mensaje_pantalla_alta_exitosa
     def alta(self,producto,precio,tree,stock,my_base):   
         try:
-            valor=True
             if producto.get()!="" and precio.get()!="" and stock.get()!="":
                 if validar.validar_producto(producto.get())==True:
                     if askyesno( "ALTA",f"decea dar de alta: {producto.get()} ${precio.get()}"):
-                        
+                        valor=True
                         cursor=my_base.cursor()
                         data=(producto.get(),precio.get(),stock.get())
                         sql="INSERT INTO producto(producto, precio, stock) VALUES(?,?,?)"
@@ -82,21 +82,20 @@ class Control(Sujeto):
                         
                     else:
                         showinfo(title="ALTA",message="Alta Cancelada")
-                        valor=False
+                        
                 else:
                     showerror(title="ERROR AL VALIDAR", message="ERROR EN EL CAMPO DESCIPCION")
-                    valor=False
+                    
             else:
                 showerror(title="ERROR", message="NO SE PUEDEN DAR DE ALTA CAMPOS VACIOS")
-                valor=False
-
         except(TclError):
             showerror(title="ERROR", message="CAMPO PRECIO U STOCK VACIOS, NO ADMITEN LETRAS")
             Vaciar.vaciar(producto,precio,stock)
         except(IntegrityError):
                     showerror(title="ERROR", message="NO SE PUEDEN DAR DE ALTA PRODUCTOS IGUALES")
                     #Vaciar.vaciar(*args)
-        return valor
+        
+        #return valor
 
     #@mensaje_pantalla_baja
     def baja(self,tree,producto,precio,stock,boton_modificar,boton_alta,boton_borrar,my_base):
