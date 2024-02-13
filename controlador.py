@@ -1,6 +1,6 @@
 from dato import *
 from pantalla import *
-from observador import ConcreteObserverA
+from observador import *
 """
 def __main__():
     Pantalla(BaseDato("my_base.sqlite3").my_base)
@@ -15,7 +15,9 @@ if __name__=="__main__":
 class Controlador:
     def __init__(self,):
         self.app=Pantalla(BaseDato("my_base.sqlite3").my_base)
-        self.observador=ConcreteObserverA(Control())
+        self.abmc=Control()
+        self.observador=ConcreteObserverA(self.abmc)
+
 
 
 if __name__ =="__main__":

@@ -52,7 +52,7 @@ class Control(Sujeto):
         pass
         
     #@mensaje_pantalla_alta_exitosa
-    def alta(producto,precio,tree,stock,my_base):   
+    def alta(self,producto,precio,tree,stock,my_base):   
         try:
             valor=True
             if producto.get()!="" and precio.get()!="" and stock.get()!="":
@@ -78,7 +78,7 @@ class Control(Sujeto):
                         
                         actualizar.actualizar_treeview(tree,my_base)      
                         Vaciar.vaciar(producto,precio,stock)
-                        Sujeto.notificar(producto.get(),precio.get(),stock.get())
+                        self.notificar(producto.get(),precio.get(),stock.get())
                         
                     else:
                         showinfo(title="ALTA",message="Alta Cancelada")
@@ -99,7 +99,7 @@ class Control(Sujeto):
         return valor
 
     #@mensaje_pantalla_baja
-    def baja(tree,producto,precio,stock,boton_modificar,boton_alta,boton_borrar,my_base):
+    def baja(self,tree,producto,precio,stock,boton_modificar,boton_alta,boton_borrar,my_base):
         if askyesno("BAJA",f"decea dar de baja: {producto.get()} $ {precio.get()}"):
             valor=True
             select=tree.selection()
@@ -126,7 +126,7 @@ class Control(Sujeto):
         boton_borrar.configure(state=DISABLED) 
         return valor
     #@mensaje_pantalla_modificar
-    def modificar(tree,producto,precio,stock,boton_modificar,boton_alta,boton_borrar,my_base):
+    def modificar(self,tree,producto,precio,stock,boton_modificar,boton_alta,boton_borrar,my_base):
         #try:
         if producto.get()!="" and precio.get()!="" and stock.get()!="":
             if validar.validar_producto(producto.get())==True:
@@ -169,7 +169,7 @@ class Control(Sujeto):
         boton_borrar.configure(state=DISABLED)
         return valor
             
-    def muestra(tree,producto,precio,stock,boton_modificar,boton_alta,boton_borrar):
+    def muestra(self,tree,producto,precio,stock,boton_modificar,boton_alta,boton_borrar):
         #Para evitar que lance un error, si el usuario no slecciona un valor del Tree
         try:
             select=tree.selection()
