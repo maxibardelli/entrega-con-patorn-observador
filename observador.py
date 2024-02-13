@@ -15,7 +15,7 @@ class TemaConcreto(Sujeto):
         self.notificar()
     def get_estado(self):
         return self.estado
-class Observador:
+class Observador(TemaConcreto):
     def update(self):
         raise NotImplementedError("Delegación de actualización")
 

@@ -11,6 +11,7 @@ class Pantalla():
                 self.stock=DoubleVar() 
                 self.tree=ttk.Treeview(self.master)
                 self.componente_pantalla()
+                self.abmc=Control()
 
 #####################################################################################################################3
         def componente_pantalla(self,):
