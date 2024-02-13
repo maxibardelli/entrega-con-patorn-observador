@@ -1,7 +1,7 @@
 class Sujeto:
     observadores = []
-    def agregar(self, obj):
-        self.observadores.append(obj)
+    def agregar(self, *args):
+        self.observadores.append(*args)
     def quitar(self, obj):
         pass
     def notificar(self, *args):
@@ -20,9 +20,9 @@ class Observador(TemaConcreto):
         raise NotImplementedError("Delegación de actualización")
 
 class ConcreteObserverA(Observador):
-    def __init__(self, obj):
+    def __init__(self,obj,*args):
         self.observador_a = obj
-        self.observador_a.agregar(self)
+        self.observador_a.agregar(self, *args)
     def update(self,*args):
         print("Actualización dentro de ObservadorConcretoA")
         
