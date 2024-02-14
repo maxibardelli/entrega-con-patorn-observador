@@ -4,6 +4,9 @@ from modelo import Control, actualizar
 from observador import * 
 class Pantalla():
         def __init__(self,base):
+                self._observers = []
+                obs = ConcreteObserverA()
+                self.registrar_observador(obs)
                 self.my_base=base
                 self.master=Tk()
                 self.producto=StringVar()
@@ -12,7 +15,17 @@ class Pantalla():
                 self.tree=ttk.Treeview(self.master)
                 self.abmc=Control()
                 self.componente_pantalla()
-                
+
+        def registrar_observador(self,observador):
+                self._observers.append(observador)
+
+        def quitar_observador(self,observador):
+                self._observers.remove(observador)
+
+        def notificar_observador(self, mensaje):
+                for observador in self._observers:
+                        observador.update(mensaje)
+
 
 #####################################################################################################################3
         def componente_pantalla(self,):
@@ -45,7 +58,7 @@ class Pantalla():
                 self.tree.place(x=0,width=450,y=95) 
         ###########################################################################################################
                 
-                boton_alta=Button(self.master, text="alta", command=lambda:self.abmc.alta(self.producto,self.precio,self.tree,self.stock,self.my_base))
+                boton_alta=Button(self.master, text="alta", command=lambda:self.abmc.alta(self.producto,self.precio,self.tree,self.stock,self.my_base, self))
                 boton_alta.place(x=0,width=100,y=55)
                 boton_borrar=Button(self.master, text="borrar",command=lambda:self.abmc.baja(self.tree,self.producto,self.precio,self.stock,boton_modificar,boton_alta,boton_borrar,self.my_base),state=DISABLED)
                 boton_borrar.place(x=101,width=100,y=55)

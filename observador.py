@@ -14,11 +14,12 @@ class Observador:
         raise NotImplementedError("Delegación de actualización")
 
 class ConcreteObserverA(Observador):
-    def __init__(self,obj,*args):
-        self.observador_a = obj
-        self.observador_a.agregar(self, *args)
-    def update(self,*args):
+    def __init__(self):
+        pass
+        #self.observador_a = obj
+        #self.observador_a.agregar(self, *args)
+    def update(self,mensaje,*args):
         print("Actualización dentro de ObservadorConcretoA")
         
-        print("Estos son los parametros: ", args )
+        print("Estos son los parametros: ", mensaje )
 

@@ -53,7 +53,7 @@ class Control(Sujeto):
         pass
         
     #@mensaje_pantalla_alta_exitosa
-    def alta(self,producto,precio,tree,stock,my_base):   
+    def alta(self,producto,precio,tree,stock,my_base,app):
         try:
             if producto.get()!="" and precio.get()!="" and stock.get()!="":
                 if validar.validar_producto(producto.get())==True:
@@ -66,6 +66,7 @@ class Control(Sujeto):
                         my_base.commit()
                         
                         showinfo(title="ALTA",message="Alta Exitosa")
+                        app.notificar_observador("<<== ALTA ==>>")
                         
                         """
                         ingreso=Tabla()
