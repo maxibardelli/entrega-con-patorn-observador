@@ -1,5 +1,5 @@
 class Sujeto:
-    observadores = []
+    self.observadores = []
     def agregar(self, *args):
         self.observadores.append(*args)
     def quitar(self, obj):
@@ -7,6 +7,9 @@ class Sujeto:
     def notificar(self, *args):
         for observador in self.observadores:
             observador.update(*args)
+class SujetoConcreto(Sujeto):
+    def __init__(self): pass
+    _observers: list[Observador] = self.observadores 
 class Observador:
     def update(self):
         raise NotImplementedError("Delegación de actualización")
