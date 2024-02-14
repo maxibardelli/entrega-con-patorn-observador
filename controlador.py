@@ -15,10 +15,12 @@ if __name__=="__main__":
 class Controlador:
     def __init__(self,):
         self.app=Pantalla(BaseDato("my_base.sqlite3").my_base)
+    def inicio_secion_observadorA(self,):
         self.observador=ConcreteObserverA(self.app.abmc)
 
 
 
 if __name__ =="__main__":
-    app=Controlador()
+    x=Controlador()
+    x.incio_secion_observadorA()
     
